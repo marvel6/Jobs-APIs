@@ -43,11 +43,11 @@ app.use('/api/v1',route)
 app.use('/api/v1',authentication,routes)
 
 app.get('/', (req, res) => {
-  res.send('<h1>Jobs API</h1><a href="/api-docs">Documetation</a>');
+  res.send('<h1>Jobs API</h1><a href="/api-doc">Documetation</a>');
 });
 
 
-app.use('/api-docs',swagger.serve,swagger.setup(swaggerContent))
+app.use('/api-doc',swagger.serve,swagger.setup(swaggerContent));
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
@@ -58,7 +58,7 @@ const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI)
     app.listen(port, () =>
-      console.log(`Server is listening on this port ${port}...`)
+      console.log(`Server is listening on ${port}...`)
     );
   } catch (error) {
     console.log(error);
