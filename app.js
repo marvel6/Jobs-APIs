@@ -24,7 +24,7 @@ const errorHandlerMiddleware = require('./middleware/error-handler');
 const routes = require('./routes/jobs')
 const route = require('./routes/auth')
 
-app.set('trust proxy', 1)
+app.set('trust proxy',1)
 app.use(exp({
   windowMs: 15 * 60 * 1000, // 15 minutes
 	max: 100
