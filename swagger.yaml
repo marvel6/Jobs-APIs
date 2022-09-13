@@ -1,0 +1,246 @@
+openapi: 3.0.0
+info:
+  title: Jobs-API
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://my-api-05.herokuapp.com/api/v1
+  variables: {}
+paths:
+  /{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The user ID
+    get:
+      tags:
+      - jobs
+      summary: GET JOB
+      operationId: GETJOB
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    patch:
+      tags:
+      - jobs
+      summary: UPDATE JOB
+      operationId: UPDATEJOB
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UPDATEJOBREQUEST'
+              - example:
+                  company: Apple
+                  position: Project manager
+            example:
+              company: Apple
+              position: Project manager
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /:
+    post:
+      tags:
+      - jobs
+      summary: CREATE JOB
+      operationId: CREATEJOB
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CREATEJOBREQUEST'
+              - example:
+                  company: Netflix
+                  position: ' Backend Enginner'
+            example:
+              company: Netflix
+              position: ' Backend Enginner'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    get:
+      tags:
+      - jobs
+      summary: GET ALL JOB
+      operationId: GETALLJOB
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The user ID
+    delete:
+      tags:
+      - jobs
+      summary: DEL JOB
+      operationId: DELJOB
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /login:
+    post:
+      tags:
+      - auth
+      summary: LOGIN
+      operationId: LOGIN
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LOGINREQUEST'
+              - example:
+                  email: ekpe195@gmail.com
+                  password: 09072336259Am
+            example:
+              email: ekpe195@gmail.com
+              password: 09072336259Am
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /register:
+    post:
+      tags:
+      - auth
+      summary: REGISTER
+      operationId: REGISTER
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/REGISTERREQUEST'
+              - example:
+                  name: solomon Ekpe
+                  email: ekpe195@gmail.com
+                  password: 09072336259Am
+            example:
+              name: solomon Ekpe
+              email: ekpe195@gmail.com
+              password: 09072336259Am
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+components:
+  schemas:
+    CREATEJOBREQUEST:
+      title: CREATEJOBREQUEST
+      required:
+      - company
+      - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      example:
+        company: Netflix
+        position: ' Backend Enginner'
+    UPDATEJOBREQUEST:
+      title: UPDATEJOBREQUEST
+      required:
+      - company
+      - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      example:
+        company: Apple
+        position: Project manager
+    LOGINREQUEST:
+      title: LOGINREQUEST
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: ekpe195@gmail.com
+        password: 09072336259Am
+    REGISTERREQUEST:
+      title: REGISTERREQUEST
+      required:
+      - name
+      - email
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: solomon Ekpe
+        email: ekpe195@gmail.com
+        password: 09072336259Am
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+
+- name: jobs
+  description: ''
+- name: auth
+  description: ''
