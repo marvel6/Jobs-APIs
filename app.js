@@ -43,11 +43,10 @@ app.use('/api/v1',route)
 app.use('/api/v1',authentication,routes)
 
 app.get('/', (req, res) => {
-  res.send('<h1>Jobs API</h1><a href="/api-doc">Documetation</a>');
+  res.send('<h1>Jobs API</h1><a href="/api-docs">Documetation</a>');
 });
 
-
-app.use('/api-doc',swagger.serve,swagger.setup(swaggerContent));
+app.use('/api-docs',swagger.serve,swagger.setup(swaggerContent))
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
